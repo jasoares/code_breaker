@@ -13,12 +13,12 @@ module Codebreaker
 
     describe "#start" do
       it "sends a welcome message" do
-        @output.should_receive(:puts).with('Welcome to Codebreaker!')
+        @output.should_receive(:puts).with('Welcome to CodeBreaker!')
         @game.start('1234')
       end
 
       it "prompts for the first guess" do
-        @output.should_receive(:puts).with('Enter guess:')
+        @output.should_receive(:puts).with('Enter a guess:')
         @game.start('1234')
       end
     end

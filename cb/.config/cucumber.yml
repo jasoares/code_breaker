@@ -1,0 +1,2 @@
+autotest: --color --format progress
+autotest-all: --color --format progress
