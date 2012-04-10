@@ -24,10 +24,36 @@ module Codebreaker
     end
 
     describe "#guess" do
-      it "sends the mark to output" do
-        @game.start('1234')
-        @output.should_receive(:puts).with('++++')
-        @game.guess('1234')
+
+      before(:each) do
+        @code = '1234'
+        @game.start(@code)
+      end
+
+      context "when passed a string of numbers" do
+        it "sends the mark to output" do
+          @output.should_receive(:puts).with('++++')
+          @game.guess(@code)
+        end
+      end
+
+      context "when passed the keyword 'quit'" do
+        it "calls the #quit method" do
+          @game.should_receive(:quit)
+          @game.guess('quit')
+        end
+      end
+    end
+
+    describe "#quit" do
+      it "it shows the code" do
+        @output.should_receive(:puts).with("The code was #{@code}")
+        @game.quit
+      end
+
+      it "it thanks the player for playing" do
+        @output.should_receive(:puts).with("Thanks for playing!")
+        @game.quit
       end
     end
   end

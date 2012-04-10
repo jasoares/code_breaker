@@ -1,17 +1,3 @@
-class Output
-  def messages
-    @messages ||= []
-  end
-
-  def puts(message)
-    messages << message
-  end
-end
-
-def output
-  @output ||= Output.new
-end
-
 Given /^I am not yet playing$/ do
 end
 
@@ -36,3 +22,30 @@ end
 Then /^the mark should be "([^"]*)"$/ do |mark|
   output.messages.should include(mark)
 end
+
+Given /^I am in the middle of a game$/ do
+  @game = Codebreaker::Game.new(output)
+end
+
+Given /^I'm asked for a new guess$/ do
+  output.messages.should include("Enter a guess:")
+end
+
+When /^I enter the keyword 'quit'$/ do
+  @game.guess('quit')
+end
+
+class Output
+  def messages
+    @messages ||= []
+  end
+
+  def puts(message)
+    messages << message
+  end
+end
+
+def output
+  @output ||= Output.new
+end
+
