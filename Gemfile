@@ -5,5 +5,7 @@ group :test do
   gem 'cucumber'
   gem 'autotest-standalone'
   gem 'syntax'
+  gem 'simplecov'
+  gem 'simplecov-rcov'
 end
 
